@@ -16,3 +16,7 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.resource('user', 'UserController')
+
+Route.post('user/change-password/:id', 'UserController.changePassword')

@@ -23,6 +23,7 @@ Técnicamente el juego sera un TCG multiplataformas orientado a partidas rápida
 		* Username
 		* Email
 		* Password
+		* Gold
 
 	* **Explicacion:**
 
