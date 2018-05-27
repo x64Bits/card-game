@@ -1,9 +1,9 @@
 'use strict'
 
 const User = use('App/Models/User')
-
+const Card = use('App/Models/Card')
+const CardPlayer = use('App/Models/CardPlayer')
 const { validateAll } = use('Validator')
-
 const Hash = use('Hash')
 
 class UserController {
@@ -29,9 +29,11 @@ class UserController {
       return response.send({ 'code': 500, 'msg': 'Error al crear usuario'} )
     }
 
-    await User.create(data)
+    const userCreated = await User.create(data)
 
-    return response.send({ 'code': 200, 'msg': 'Usuario Registrado con exito' })
+    await this.firstCards( userCreated )
+
+    return response.send({ 'code': 200, 'msg': 'Usuario Registrado con exito', userCreated })
   }
 
   async show ({ params, request, response }) {
@@ -69,6 +71,24 @@ class UserController {
   }
 
   async destroy () {
+  }
+
+  async firstCards ( userCreated ) {
+
+    const startingCards = await Card
+      .query()
+      .where('collection', '=', 'starting')
+      .get()
+
+    for( let startingCard of startingCards ) {
+      var card = new CardPlayer()
+      card.user_id = userCreated.id
+      card.card_id = startingCard.id
+      card.dmg = startingCard.dmg
+      
+      await card.save()
+    }
+
   }
 }
 

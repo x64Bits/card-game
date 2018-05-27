@@ -11,12 +11,14 @@
 |
 */
 
-// const Factory = use('Factory')
+ const Factory = use('Factory')
 
-/**
-  Factory.blueprint('App/Models/User', (faker) => {
+
+  Factory.blueprint('App/Models/Card', (faker) => {
     return {
-      username: faker.username()
+      name: faker.name(),
+      tale: faker.sentence(),
+      dmg: faker.integer({ min: 3, max: 13 }),
+      collection: 'starting'
     }
   })
-*/

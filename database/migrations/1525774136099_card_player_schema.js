@@ -5,12 +5,12 @@ const Schema = use('Schema')
 class CardPlayerSchema extends Schema {
   up () {
     this.create('card_players', (table) => {
+      table.increments()
       table.integer('user_id')
       table.integer('card_id')
-      table.integer('level')
-      table.integer('exp')
+      table.integer('level').default(1)
+      table.integer('exp').default(1)
       table.integer('dmg')
-      table.increments()
       table.timestamps()
     })
   }
