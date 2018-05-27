@@ -70,7 +70,21 @@ class UserController {
     return response.send({"code": 200, "msg": "Contraseña cambiada con exito"})
   }
 
-  async destroy () {
+  async destroy ({ params, request, response }) {
+
+    const { id } = params
+
+    const user = await User.find(id)
+
+    await user
+      .cards()
+      .where('user_id', '=', user.id)
+      .delete()
+
+    await user.delete()
+
+    return response.send('El usuario ha sido eliminado con exito')
+
   }
 
   async firstCards ( userCreated ) {
