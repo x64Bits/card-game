@@ -19,6 +19,7 @@
       name: faker.name(),
       tale: faker.sentence(),
       dmg: faker.integer({ min: 3, max: 13 }),
-      collection: 'starting'
+      collection: 'starting',
+      graph_path: faker.sentence()
     }
   })

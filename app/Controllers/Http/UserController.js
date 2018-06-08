@@ -17,7 +17,7 @@ class UserController {
     const data = request.only([
       'username',
       'email',
-      'password'
+      'password' 
      ])
 
     const validation = await validateAll(data, {
@@ -83,7 +83,7 @@ class UserController {
 
     await user.delete()
 
-    return response.send('El usuario ha sido eliminado con exito')
+    return response.send({'code': 200, 'msg': 'Usuario eliminado con exito'})
 
   }
 

@@ -9,8 +9,9 @@ class CardSchema extends Schema {
       table.string('name')
       table.string('tale')
       table.integer('dmg')   
-      table.string('collection')   
-      table.timestamps()
+      table.string('collection')
+      table.string('graph_path') 
+      table.timestamps() 
     })
   }
 
